@@ -1,0 +1,49 @@
+plugins {
+  id 'java'
+  id 'maven'
+  id 'idea'
+}
+
+configurations.all {
+}
+
+group = 'io.dropwizard'
+version = '1.2.0-SNAPSHOT'
+
+description = """Dropwizard Example Application"""
+
+sourceCompatibility = "$javaVersion"
+targetCompatibility = "$javaVersion"
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+repositories {
+     maven { url "http://repo1.maven.org/maven2" }
+}
+
+dependencies {
+    compile group: 'io.dropwizard', name: 'dropwizard-core', version: "$dropwizardVersion"
+    compile group: 'io.dropwizard', name: 'dropwizard-auth', version: "$dropwizardVersion"
+    compile group: 'io.dropwizard', name: 'dropwizard-assets', version: "$dropwizardVersion"
+    compile group: 'io.dropwizard', name: 'dropwizard-http2', version: "$dropwizardVersion"
+    compile group: 'io.dropwizard', name: 'dropwizard-hibernate', version: "$dropwizardVersion"
+    compile group: 'io.dropwizard', name: 'dropwizard-migrations', version: "$dropwizardVersion"
+    compile group: 'io.dropwizard', name: 'dropwizard-views-freemarker', version: "$dropwizardVersion"
+    compile group: 'io.dropwizard', name: 'dropwizard-views-mustache', version: "$dropwizardVersion"
+    compile group: 'io.dropwizard', name: 'dropwizard-metrics-graphite', version: "$dropwizardVersion"
+    compile group: 'com.h2database', name: 'h2', version: "$h2Version"
+    testCompile group: 'io.dropwizard', name: 'dropwizard-testing', version: "$dropwizardVersion"
+    testCompile group: 'org.mockito', name: 'mockito-core', version: "$mockitoVersion"
+    testCompile(group: 'org.glassfish.jersey.test-framework.providers',
+            name: 'jersey-test-framework-provider-inmemory', version: "$jerseyTestFrameworkProviderVersion") {
+        exclude(module: 'javax.servlet-api')
+        exclude(module: 'junit')
+    }
+    testCompile(group: 'org.glassfish.jersey.test-framework.providers',
+            name: 'jersey-test-framework-provider-grizzly2', version: "$jerseyTestFrameworkProviderVersion") {
+        exclude(module: 'javax.servlet-api')
+        exclude(module: 'junit')
+    }
+}
