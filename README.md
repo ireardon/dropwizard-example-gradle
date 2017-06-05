@@ -1,7 +1,7 @@
 # Introduction
 
-The Dropwizard example application was developed to, as its name implies, provide examples of some of the features
-present in Dropwizard.
+This is a port of the `dropwizard-example` project from Maven to Gradle. You can find the original
+example project [here](https://github.com/dropwizard/dropwizard/tree/master/dropwizard-example).
 
 # Overview
 
@@ -31,7 +31,7 @@ To test the example application run the following commands.
 
 * To package the example run the following from the root dropwizard directory.
 
-        mvn package
+        ./gradlew clean build
 
 * To setup the h2 database run.
 

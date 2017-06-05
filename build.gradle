@@ -4,9 +4,6 @@ plugins {
   id 'idea'
 }
 
-configurations.all {
-}
-
 group = 'io.dropwizard'
 version = '1.2.0-SNAPSHOT'
 
@@ -21,6 +18,9 @@ tasks.withType(JavaCompile) {
 
 repositories {
      maven { url "http://repo1.maven.org/maven2" }
+}
+
+configurations.all {
 }
 
 dependencies {
@@ -45,5 +45,14 @@ dependencies {
             name: 'jersey-test-framework-provider-grizzly2', version: "$jerseyTestFrameworkProviderVersion") {
         exclude(module: 'javax.servlet-api')
         exclude(module: 'junit')
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+            'Class-Path': configurations.compile.join(' '),
+            'Main-Class': 'com.example.helloworld.HelloWorldApplication'
+        )
     }
 }
